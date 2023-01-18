@@ -1,0 +1,20 @@
+---
+  version: "3.9"
+  services:
+
+    jackett:
+      image: linuxserver/jackett
+      volumes:
+        - /mnt/tank/appdata/jackett:/config
+        - /mnt/tank/public/downloads:/downloads
+      ports:
+        - 9117:9117
+      environment:
+        - TZ=America/Toronto
+        - PUID=971
+        - PGID=971
+      depends_on:
+        - flaresolverr
+        
+    flaresolverr:
+      image: flaresolverr/flaresolverr
